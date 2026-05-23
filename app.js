@@ -132,7 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Dynamic Column Span for Week 5
         const week5Days = daysInMonth - 28;
-        week5Header.setAttribute('colspan', week5Days);
+        if (week5Days > 0) {
+            week5Header.style.display = '';
+            week5Header.setAttribute('colspan', week5Days);
+        } else {
+            week5Header.style.display = 'none';
+        }
         
         // Clear old calendar days in header rows
         const oldWeekdayHeaders = weekdayLetterRow.querySelectorAll('.day-col-header');
@@ -340,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. Number Column
             const tdNum = document.createElement('td');
             tdNum.className = 'num-col num-cell';
-            tdNum.textContent = (rIndex + 1).toFixed(1);
+            tdNum.textContent = rIndex + 1;
             tr.appendChild(tdNum);
             
             // 2. Habit Name Input Column
@@ -764,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             li.innerHTML = `
                 <div class="top-habit-meta">
-                    <span class="top-habit-name">${index + 1}.0 &nbsp; ${escapeHTML(h.name)}</span>
+                    <span class="top-habit-name">${index + 1} &nbsp; ${escapeHTML(h.name)}</span>
                     <span class="top-habit-percentage">${h.pctText}</span>
                 </div>
                 <div class="top-habit-bar-bg">
