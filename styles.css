@@ -1,0 +1,1191 @@
+/* ==========================================================================
+   AESTHETIC PASTEL HABIT TRACKER STYLESHEET
+   ========================================================================== */
+
+/* Theme Color Variable Declarations */
+:root {
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-soft: 0 8px 30px rgba(165, 150, 140, 0.08);
+    --shadow-hover: 0 12px 35px rgba(165, 150, 140, 0.15);
+}
+
+.theme-rose {
+    --bg-page: #FFFDFA;
+    --card-bg: #FFFFFF;
+    --accent-container: #FFF6E8E4; /* Soft Lilac-Rose Tint */
+    --primary-accent: #FFB6D8;    /* Soft Pink */
+    --text-primary: #2C2525;
+    --text-secondary: #706262;
+    --border-light: rgba(224, 215, 210, 0.4);
+    --weekly-bg: #FFFBFB;
+    --checkbox-border: #D1528C;   /* Week-specific checked color */
+    --accent-glow: rgba(255, 182, 216, 0.2);
+}
+
+.theme-matcha {
+    --bg-page: #FFFDFA;
+    --card-bg: #FFFFFF;
+    --accent-container: #FFDBEBD3; /* Soft Sage Tint */
+    --primary-accent: #B7E1CD;    /* Sage Green */
+    --text-primary: #212C25;
+    --text-secondary: #586B5F;
+    --border-light: rgba(210, 224, 215, 0.4);
+    --weekly-bg: #FBFDFB;
+    --checkbox-border: #3C783C;
+    --accent-glow: rgba(183, 225, 205, 0.2);
+}
+
+.theme-sky {
+    --bg-page: #FFFDFA;
+    --card-bg: #FFFFFF;
+    --accent-container: #FFDEECF7; /* Soft Sky Tint */
+    --primary-accent: #B0CFFF;    /* Sky Blue */
+    --text-primary: #1C232C;
+    --text-secondary: #5A6675;
+    --border-light: rgba(210, 218, 224, 0.4);
+    --weekly-bg: #FBFDFD;
+    --checkbox-border: #3C783C;
+    --checkbox-border: #3C78D8;
+    --accent-glow: rgba(176, 207, 255, 0.2);
+}
+
+.theme-lavender {
+    --bg-page: #FFFDFA;
+    --card-bg: #FFFFFF;
+    --accent-container: #FFEBE5F0; /* Soft Lavender Tint */
+    --primary-accent: #D7C7EB;    /* Lavender */
+    --text-primary: #25202C;
+    --text-secondary: #6A5D75;
+    --border-light: rgba(218, 210, 224, 0.4);
+    --weekly-bg: #FDFBFD;
+    --checkbox-border: #7B52AB;
+    --accent-glow: rgba(215, 199, 235, 0.2);
+}
+
+.theme-neutral {
+    --bg-page: #FFFDFA;
+    --card-bg: #FFFFFF;
+    --accent-container: #FFEDEAE5; /* Warm Sand Tint */
+    --primary-accent: #E0D8CB;    /* Latte/Sand */
+    --text-primary: #2C2A27;
+    --text-secondary: #757069;
+    --border-light: rgba(224, 220, 210, 0.4);
+    --weekly-bg: #FAF9F6;
+    --checkbox-border: #8C7B65;
+    --accent-glow: rgba(224, 216, 203, 0.2);
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: var(--transition-smooth);
+    overflow-x: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1600px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   HEADER BLOCK
+   ========================================================================== */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.controls-group {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+}
+
+.control-select {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.control-select label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.control-select select {
+    appearance: none;
+    border: 1px solid var(--border-light);
+    background-color: var(--card-bg);
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23706262' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 0.8rem;
+    transition: var(--transition-smooth);
+    min-width: 140px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+}
+
+.control-select select:hover, .control-select select:focus {
+    border-color: var(--primary-accent);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Overall Progress Card */
+.overall-progress-card {
+    background-color: var(--accent-container);
+    border-radius: 16px;
+    padding: 1.2rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-width: 320px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: var(--transition-smooth);
+}
+
+.overall-progress-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.progress-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+.progress-fraction {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0.2rem 0;
+    color: var(--text-primary);
+}
+
+.progress-subtitle {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+}
+
+.progress-ring-container {
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+
+.progress-ring-indicator {
+    transform: rotate(-90deg);
+    transform-origin: 35px 35px;
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-percentage-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   SIDEBAR & MAIN WORKSPACE
+   ========================================================================== */
+.main-workspace {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+}
+
+.sidebar-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.sidebar-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.6rem;
+}
+
+/* Affirmation dropzone card */
+.affirmation-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.affirmation-image-container {
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+    border: 2px dashed rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.01);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.affirmation-image-container:hover {
+    border-color: var(--primary-accent);
+    background-color: var(--accent-glow);
+}
+
+.affirmation-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.affirmation-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 1rem;
+}
+
+.affirmation-placeholder i {
+    font-size: 1.8rem;
+    opacity: 0.6;
+}
+
+.affirmation-placeholder p {
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+.quote-container {
+    position: relative;
+    background-color: var(--accent-container);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.quote-container textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    resize: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.quote-container textarea:focus {
+    outline: none;
+}
+
+.quote-icon-start {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.7rem;
+    opacity: 0.2;
+}
+
+.quote-icon-end {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+    opacity: 0.2;
+}
+
+/* Top 10 Habits Dashboard */
+.top-habits-subtitle {
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: -0.8rem;
+    margin-bottom: 1.2rem;
+    font-style: italic;
+}
+
+.top-habits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    list-style: none;
+}
+
+.top-habit-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: var(--transition-smooth);
+}
+
+.top-habit-item.completed {
+    background-color: var(--accent-container);
+    border-color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.top-habit-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.top-habit-name {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 190px;
+}
+
+.top-habit-percentage {
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+}
+
+.top-habit-bar-bg {
+    width: 100%;
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.top-habit-bar-fill {
+    height: 100%;
+    background-color: var(--primary-accent);
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   DAILY HABITS GRID
+   ========================================================================== */
+.grid-section {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+}
+
+.tip-pill {
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Responsive Table Wrapper */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+}
+
+.habit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+/* Table Header Styles */
+.habit-table th {
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Top Week row styling */
+.week-title-cell {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 0.5rem 0;
+    border-right: 1px solid var(--border-light);
+}
+
+.week-title-cell.bg-week-1 { background-color: rgba(222, 236, 247, 0.15); }
+.week-title-cell.bg-week-2 { background-color: rgba(246, 232, 228, 0.15); }
+.week-title-cell.bg-week-3 { background-color: rgba(219, 235, 211, 0.15); }
+.week-title-cell.bg-week-4 { background-color: rgba(252, 242, 222, 0.15); }
+.week-title-cell.bg-week-5 { background-color: rgba(222, 236, 247, 0.15); }
+
+/* Weekday letter and dates rows */
+#weekday-letter-row th {
+    padding: 0.5rem 0.2rem;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+}
+
+#day-date-row th {
+    padding: 0.4rem 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Custom column metadata sizing */
+.num-col { width: 30px; text-align: center; padding: 0.8rem 0.2rem; }
+.habit-name-col { min-width: 200px; text-align: left; padding: 0.8rem 1rem; }
+.divider-col { width: 6px; background-color: rgba(0, 0, 0, 0.01); border-right: 1px solid var(--border-light); border-left: 1px solid var(--border-light); }
+.day-col { min-width: 32px; width: 32px; border-right: 1px solid var(--border-light); }
+.goal-col-header, .pct-col-header, .count-col-header, .streak-col-header { padding: 0.5rem; text-transform: uppercase; font-size: 0.65rem; color: var(--text-secondary); }
+.progress-col-header { min-width: 80px; padding: 0.5rem; text-transform: uppercase; font-size: 0.65rem; color: var(--text-secondary); }
+
+/* Column groups helper cells */
+.meta-col { border-right: 1px solid var(--border-light); }
+.meta-col-end { border-left: 1px solid var(--border-light); }
+
+/* Table Body Styles */
+.habit-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: var(--transition-smooth);
+}
+
+.habit-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.005);
+}
+
+/* Grid data cells styling */
+.habit-table td {
+    padding: 0.45rem 0.2rem;
+    vertical-align: middle;
+    text-align: center;
+    border-right: 1px solid var(--border-light);
+}
+
+.habit-table td:last-child {
+    border-right: none;
+}
+
+/* Inputs styling */
+.num-cell {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.habit-name-cell {
+    text-align: left !important;
+    padding: 0.4rem 1rem !important;
+}
+
+.habit-input {
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.habit-input:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.habit-input:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Checkbox cells */
+.day-cell {
+    padding: 0 !important;
+}
+
+.day-cell-checkbox {
+    width: 100%;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.day-cell-checkbox:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* The actual customized checkbox element */
+.checkbox-custom {
+    width: 17px;
+    height: 17px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    background-color: var(--card-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.day-cell-checkbox.checked .checkbox-custom {
+    background-color: var(--primary-accent);
+    border-color: var(--checkbox-border);
+    box-shadow: 0 2px 8px var(--accent-glow);
+    animation: checkbox-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.checkbox-custom::after {
+    content: '';
+    width: 4px;
+    height: 8px;
+    border: solid #FFFFFF;
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg) scale(0);
+    margin-top: -1px;
+    transition: var(--transition-smooth);
+}
+
+.day-cell-checkbox.checked .checkbox-custom::after {
+    transform: rotate(45deg) scale(1);
+}
+
+/* Divider cell */
+.divider-cell {
+    background-color: rgba(0,0,0,0.005);
+    padding: 0 !important;
+}
+
+/* Numeric parameters cols */
+.goal-input {
+    width: 42px;
+    text-align: center;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 0.3rem 0;
+    border-radius: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.goal-input:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.goal-input:focus {
+    outline: none;
+    border-color: var(--primary-accent);
+    background-color: var(--card-bg);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.pct-cell {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 45px;
+}
+
+/* Embedded sparkline progress bar */
+.bar-cell {
+    min-width: 80px;
+}
+
+.sparkbar-container {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1.5px solid #FFFFFF;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.sparkbar-fill {
+    height: 100%;
+    background-color: var(--primary-accent);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.count-cell {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    min-width: 60px;
+}
+
+.streak-cell {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.streak-cell i {
+    font-size: 0.75rem;
+    color: var(--checkbox-border);
+    animation: pulse 1.5s infinite;
+}
+
+/* Today highlight */
+.today-col-highlight {
+    background-color: rgba(255, 221, 152, 0.12) !important;
+}
+
+th.today-col-highlight {
+    background-color: var(--accent-container) !important;
+    color: var(--text-primary) !important;
+    border-bottom: 2px solid var(--checkbox-border) !important;
+}
+
+/* Checkbox specific checked color coloring rules */
+.bg-week-1 .day-cell-checkbox.checked .checkbox-custom { background-color: #B0CFFF; border-color: #3C78D8; box-shadow: 0 2px 8px rgba(176, 207, 255, 0.4); }
+.bg-week-2 .day-cell-checkbox.checked .checkbox-custom { background-color: #FFB6D8; border-color: #D1528C; box-shadow: 0 2px 8px rgba(255, 182, 216, 0.4); }
+.bg-week-3 .day-cell-checkbox.checked .checkbox-custom { background-color: #A9E0E4; border-color: #37B4BD; box-shadow: 0 2px 8px rgba(169, 224, 228, 0.4); }
+.bg-week-4 .day-cell-checkbox.checked .checkbox-custom { background-color: #FFDD98; border-color: #CF9C00; box-shadow: 0 2px 8px rgba(255, 221, 152, 0.4); }
+.bg-week-5 .day-cell-checkbox.checked .checkbox-custom { background-color: #B0CFFF; border-color: #3C78D8; box-shadow: 0 2px 8px rgba(176, 207, 255, 0.4); }
+
+/* ==========================================================================
+   FOOTER WORKSPACE
+   ========================================================================== */
+.footer-workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.footer-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-light);
+}
+
+.footer-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.6rem;
+}
+
+/* Weekly Habits Layout */
+.weekly-flex-container {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.weekly-columns-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+}
+
+.weekly-week-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background-color: var(--weekly-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid var(--border-light);
+}
+
+.weekly-week-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.4rem;
+}
+
+.weekly-habits-checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.weekly-habit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+/* Mini checkboxes for weekly/monthly habits */
+.checkbox-mini {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.weekly-habit-item.checked .checkbox-mini, .monthly-habit-item.checked .checkbox-mini {
+    background-color: var(--primary-accent);
+    border-color: var(--checkbox-border);
+    box-shadow: 0 1px 4px var(--accent-glow);
+}
+
+.checkbox-mini::after {
+    content: '';
+    width: 3px;
+    height: 6px;
+    border: solid #FFFFFF;
+    border-width: 0 1.2px 1.2px 0;
+    transform: rotate(45deg) scale(0);
+    margin-top: -1px;
+    transition: var(--transition-smooth);
+}
+
+.weekly-habit-item.checked .checkbox-mini::after, .monthly-habit-item.checked .checkbox-mini::after {
+    transform: rotate(45deg) scale(1);
+}
+
+.weekly-habit-text-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.weekly-habit-text-input:focus {
+    outline: none;
+    border-bottom: 1.5px solid var(--primary-accent);
+}
+
+.weekly-habit-item.checked .weekly-habit-text-input {
+    text-decoration: line-through;
+    color: #999999;
+    font-style: italic;
+}
+
+/* Weekly Progress Dashboard widget */
+.weekly-progress-dashboard {
+    background-color: var(--accent-container);
+    border-radius: 12px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.weekly-progress-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+.weekly-metrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.weekly-metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+}
+
+.weekly-metric-row.overall {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 0.5rem;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+}
+
+.weekly-metric-value {
+    font-weight: 700;
+}
+
+/* Monthly Habits & Reflection Layout */
+.monthly-reflection-section {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.5rem;
+}
+
+/* Monthly Habits checklist and indicator */
+.monthly-habits-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.monthly-habits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.6rem;
+}
+
+.monthly-progress-badge {
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.monthly-habits-body {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.monthly-ring-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.monthly-ring-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.monthly-ring-container .progress-ring-indicator {
+    transform: rotate(-90deg);
+    transform-origin: 50px 50px;
+}
+
+.monthly-percentage-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.monthly-progress-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+}
+
+/* Checklist items list */
+.monthly-habits-list {
+    flex-grow: 1;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+}
+
+.monthly-habit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    border-radius: 6px;
+    transition: var(--transition-smooth);
+}
+
+.monthly-habit-item:hover {
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.monthly-habit-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.monthly-habit-input:focus {
+    outline: none;
+    border-bottom: 1.5px solid var(--primary-accent);
+}
+
+.monthly-habit-item.checked .monthly-habit-input {
+    text-decoration: line-through;
+    color: #999999;
+    font-style: italic;
+}
+
+/* Reflection block textarea */
+.monthly-reflection-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.monthly-reflection-block .footer-card-title {
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.6rem;
+}
+
+.reflection-body {
+    flex-grow: 1;
+    background-color: var(--accent-container);
+    border-radius: 12px;
+    padding: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+}
+
+.reflection-body textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    background: transparent;
+    border: none;
+    resize: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.reflection-body textarea:focus {
+    outline: none;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+@keyframes checkbox-pop {
+    0% { transform: scale(0.85); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.95; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.95; }
+}
+
+/* ==========================================================================
+   RESPONSIVE RETOUR (Sleek tablet/mobile scaling)
+   ========================================================================== */
+@media (max-width: 1200px) {
+    body {
+        padding: 1.5rem;
+    }
+    
+    .main-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-workspace {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .overall-progress-card {
+        min-width: 100%;
+    }
+
+    .weekly-flex-container {
+        grid-template-columns: 1fr;
+    }
+
+    .monthly-reflection-section {
+        grid-template-columns: 1fr;
+    }
+
+    .monthly-habits-body {
+        flex-direction: column;
+    }
+}
