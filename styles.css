@@ -264,7 +264,7 @@ body {
    ========================================================================== */
 .main-workspace {
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 1fr 320px;
     gap: 2rem;
     align-items: start;
 }

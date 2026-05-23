@@ -38,11 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const reflectionTextarea = document.getElementById('reflection-textarea');
     
-    const affirmationDropzone = document.getElementById('affirmation-dropzone');
-    const affirmationUpload = document.getElementById('affirmation-upload');
-    const affirmationImg = document.getElementById('affirmation-img');
-    const affirmationPlaceholder = document.getElementById('affirmation-placeholder');
-    const affirmationText = document.getElementById('affirmation-text');
+
     
     // SVG Circular Ring Configuration
     const overallCircleRadius = 28;
@@ -201,24 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         reflectionTextarea.value = data.reflection || '';
         
-        // Render Affirmation image and text
-        if (data.affirmationText !== undefined) {
-            affirmationText.value = data.affirmationText;
-        } else if (currentMonth === SEED_MONTH && currentYear === SEED_YEAR) {
-            affirmationText.value = DEFAULT_REFLECTION;
-        } else {
-            affirmationText.value = '';
-        }
-        
-        if (data.affirmationImg) {
-            affirmationImg.src = data.affirmationImg;
-            affirmationImg.classList.remove('hidden');
-            affirmationPlaceholder.classList.add('hidden');
-        } else {
-            affirmationImg.src = '';
-            affirmationImg.classList.add('hidden');
-            affirmationPlaceholder.classList.remove('hidden');
-        }
+
         
         // Run full recalculation
         calculateDailyMetrics();
@@ -280,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         data.reflection = DEFAULT_REFLECTION;
-        data.affirmationText = "Focused, intentional, and ready for the month ahead.";
+
         
         return data;
     }
@@ -320,9 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dailyChecks: checks,
             weeklyHabits: weekly,
             monthlyHabits: monthly,
-            reflection: '',
-            affirmationText: '',
-            affirmationImg: ''
+            reflection: ''
         };
     }
     
@@ -543,28 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
             saveCurrentMonthData();
         });
         
-        affirmationText.addEventListener('input', () => {
-            saveCurrentMonthData();
-        });
-        
-        // Affirmation image dropzone click/upload
-        affirmationDropzone.addEventListener('click', () => {
-            affirmationUpload.click();
-        });
-        
-        affirmationUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    affirmationImg.src = event.target.result;
-                    affirmationImg.classList.remove('hidden');
-                    affirmationPlaceholder.classList.add('hidden');
-                    saveCurrentMonthData();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+
         
         // Table Checklist / Input events (Delegated)
         habitRowsContainer.addEventListener('click', (e) => {
@@ -914,17 +870,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         const reflection = reflectionTextarea.value;
-        const textAffirmation = affirmationText.value;
-        const imgAffirmation = affirmationImg.classList.contains('hidden') ? '' : affirmationImg.src;
         
         const monthData = {
             dailyHabits,
             dailyChecks,
             weeklyHabits: weekly,
             monthlyHabits: monthly,
-            reflection,
-            affirmationText: textAffirmation,
-            affirmationImg: imgAffirmation
+            reflection
         };
         
         localStorage.setItem(key, JSON.stringify(monthData));

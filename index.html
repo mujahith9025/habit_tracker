@@ -84,40 +84,7 @@
         <!-- Main Workspace -->
         <main class="main-workspace">
             
-            <!-- Left Sidebar -->
-            <aside class="sidebar">
-                
-                <!-- Visual Affirmation Card -->
-                <div class="sidebar-card affirmation-card">
-                    <h2 class="sidebar-card-title">V I S U A L &nbsp;&nbsp; A F F I R M A T I O N</h2>
-                    <div class="affirmation-body">
-                        <!-- Image Container -->
-                        <div class="affirmation-image-container" id="affirmation-dropzone">
-                            <input type="file" id="affirmation-upload" accept="image/*" style="display: none;">
-                            <img id="affirmation-img" src="" alt="Affirmation Image" class="hidden">
-                            <div class="affirmation-placeholder" id="affirmation-placeholder">
-                                <i class="fa-regular fa-image"></i>
-                                <p>Click to upload your motivación</p>
-                            </div>
-                        </div>
-                        <!-- Quote Area -->
-                        <div class="quote-container">
-                            <i class="fa-solid fa-quote-left quote-icon-start"></i>
-                            <textarea id="affirmation-text" placeholder="I am focused, intentional, and ready for the month ahead." rows="2"></textarea>
-                            <i class="fa-solid fa-quote-right quote-icon-end"></i>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Top 10 Habits Dashboard -->
-                <div class="sidebar-card top-habits-card">
-                    <h2 class="sidebar-card-title">T O P &nbsp;&nbsp; 1 0 &nbsp;&nbsp; H A B I T S</h2>
-                    <div class="top-habits-subtitle">Sorted dynamically by progress</div>
-                    <ul class="top-habits-list" id="top-habits-list">
-                        <!-- Filled dynamically by JavaScript -->
-                    </ul>
-                </div>
-            </aside>
 
             <!-- Right content: Daily Habit Grid -->
             <section class="grid-section">
@@ -169,6 +136,18 @@
                     </table>
                 </div>
             </section>
+
+            <!-- Right Sidebar (Top 10 Habits) -->
+            <aside class="sidebar">
+                <!-- Top 10 Habits Dashboard -->
+                <div class="sidebar-card top-habits-card">
+                    <h2 class="sidebar-card-title">T O P &nbsp;&nbsp; 1 0 &nbsp;&nbsp; H A B I T S</h2>
+                    <div class="top-habits-subtitle">Sorted dynamically by progress</div>
+                    <ul class="top-habits-list" id="top-habits-list">
+                        <!-- Filled dynamically by JavaScript -->
+                    </ul>
+                </div>
+            </aside>
         </main>
 
         <!-- Footer Workspace -->
