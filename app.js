@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 3. Divider Column
             const tdDiv1 = document.createElement('td');
-            tdDiv1.className = 'divider-col divider-cell';
+            tdDiv1.className = 'divider-col divider-cell left-divider';
             tr.appendChild(tdDiv1);
             
             // 4. Days 1 to 31 Checkbox Columns
@@ -388,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 5. Divider Column End
             const tdDiv2 = document.createElement('td');
-            tdDiv2.className = 'divider-col divider-cell';
+            tdDiv2.className = 'divider-col divider-cell right-divider';
             tr.appendChild(tdDiv2);
             
             // 6. Target Goal Numeric Input Column

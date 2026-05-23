@@ -562,17 +562,147 @@ body {
     font-family: 'Outfit', sans-serif;
 }
 
-/* Custom column metadata sizing */
-.num-col { width: 30px; text-align: center; padding: 0.8rem 0.2rem; }
-.habit-name-col { min-width: 200px; text-align: left; padding: 0.8rem 1rem; }
-.divider-col { width: 6px; background-color: rgba(0, 0, 0, 0.01); border-right: 1px solid var(--border-light); border-left: 1px solid var(--border-light); }
-.day-col { min-width: 32px; width: 32px; border-right: 1px solid var(--border-light); }
-.goal-col-header, .pct-col-header, .count-col-header, .streak-col-header { padding: 0.5rem; text-transform: uppercase; font-size: 0.65rem; color: var(--text-secondary); }
-.progress-col-header { min-width: 80px; padding: 0.5rem; text-transform: uppercase; font-size: 0.65rem; color: var(--text-secondary); }
+/* Custom column metadata sizing with sticky positioning */
+.num-col {
+    width: 38px;
+    min-width: 38px;
+    max-width: 38px;
+    text-align: center;
+    padding: 0.8rem 0.2rem;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
 
-/* Column groups helper cells */
-.meta-col { border-right: 1px solid var(--border-light); }
-.meta-col-end { border-left: 1px solid var(--border-light); }
+.habit-name-col {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    left: 38px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.left-divider {
+    width: 6px;
+    min-width: 6px;
+    max-width: 6px;
+    position: sticky;
+    left: 258px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.right-divider {
+    width: 6px;
+    min-width: 6px;
+    max-width: 6px;
+    position: sticky;
+    right: 355px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.goal-col {
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    position: sticky;
+    right: 305px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.pct-col {
+    width: 55px;
+    min-width: 55px;
+    max-width: 55px;
+    position: sticky;
+    right: 250px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.progress-col {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    position: sticky;
+    right: 150px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.count-col {
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    position: sticky;
+    right: 75px;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+.streak-col {
+    width: 75px;
+    min-width: 75px;
+    max-width: 75px;
+    position: sticky;
+    right: 0;
+    z-index: 10;
+    background-color: var(--card-bg);
+}
+
+/* Merged header blocks matching left/right columns stickiness */
+.meta-col {
+    position: sticky;
+    left: 0;
+    z-index: 12;
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border-light);
+}
+
+.meta-col-end {
+    position: sticky;
+    right: 0;
+    z-index: 12;
+    background-color: var(--card-bg);
+    border-left: 1px solid var(--border-light);
+}
+
+/* Base styles for dividers and parameters headers */
+.divider-col {
+    background-color: rgba(0, 0, 0, 0.01);
+    border-right: 1px solid var(--border-light);
+    border-left: 1px solid var(--border-light);
+}
+
+.day-col {
+    min-width: 32px;
+    width: 32px;
+    border-right: 1px solid var(--border-light);
+}
+
+.goal-col-header, .pct-col-header, .count-col-header, .streak-col-header, .progress-col-header {
+    padding: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+}
+
+/* Prevent cell background bleed and overlap */
+.habit-table td, .habit-table th {
+    background-clip: padding-box;
+}
+
+/* Table body row hover styling overrides for sticky cells */
+.habit-table tbody tr:hover td {
+    background-color: rgba(0, 0, 0, 0.01) !important;
+}
 
 /* Table Body Styles */
 .habit-table tbody tr {
